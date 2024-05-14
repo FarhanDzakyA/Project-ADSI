@@ -19,6 +19,22 @@
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        .form-control::placeholder {
+            color: #7d7d7d;
+        }
+
+        .form-control, .input-group-text {
+            border-width: 3px;
+            border-color: #7d7d7d;
+        }
+
+        .form-control:focus {
+            box-shadow: none;
+            border-color: #7d7d7d;
+        }
+    </style>
 </head>
 <body>
     <div class="container-fluid">
@@ -30,24 +46,24 @@
             <div class="col text-center form-session">
                 <p class="login-welcome">Selamat Datang di Toolventory</p>
                 <p class="login-text" style="margin-bottom: 100px">Senang melihat anda kembali, silahkan masuk di sini</p>
-                <form action="" class="text-start login-form">
+                <form class="text-start login-form" action="Exe-file/login-exe.php" method="POST">
                     <div class="mb-3">
-                        <label class="form-label login-text">Username</label>
+                        <label class="form-label login-text" for="username">Username</label>
                         <div class="input-group">
-                            <span class="input-group-text" style="background-color: transparent; padding-left: 15px; border-right: none" id="basic-addon1"><i class="fa-solid fa-user" style="color: #595c5f"></i></span>
-                            <input type="text" class="form-control" style="border-left: none; padding-left: 0px" placeholder="Masukkan nama pengguna anda" aria-label="Username" aria-describedby="basic-addon1">
+                            <span class="input-group-text" style="background-color: transparent; padding-left: 15px; border-right: none" id="basic-addon1"><i class="fa-solid fa-user" style="color: #7d7d7d"></i></span>
+                            <input type="text" id="username" name="username" class="form-control pt-3 pb-3" style="border-left: none; padding-left: 0px" placeholder="Masukkan nama pengguna anda" aria-label="Username" aria-describedby="basic-addon1">
                         </div>
                     </div>
 
                     <div style="margin-bottom: 68px">
-                        <label class="form-label login-text">Password</label>
+                        <label class="form-label login-text" for="password">Password</label>
                         <div class="input-group">
-                            <span class="input-group-text" style="background-color: transparent; padding-left: 15px; border-right: none" id="basic-addon2"><i class="fa-solid fa-lock" style="color: #595c5f"></i></span>
-                            <input type="password" class="form-control" style="border-left: none; padding-left: 0px" placeholder="Masukkan kata sandi anda" aria-label="Password" aria-describedby="basic-addon2">
+                            <span class="input-group-text pt-3 pb-3" style="background-color: transparent; padding-left: 15px; border-right: none" id="basic-addon2"><i class="fa-solid fa-lock" style="color: #7d7d7d"></i></span>
+                            <input type="password" id="password" name="password" class="form-control pt-3 pb-3" style="border-left: none; padding-left: 0px;" placeholder="Masukkan kata sandi anda" aria-label="Password" aria-describedby="basic-addon2">
                         </div>
                     </div>
 
-                    <button type="submit" class="btn login-btn">MASUK</button>
+                    <button type="submit" class="btn btn-primary login-btn">MASUK</button>
                 </form>
             </div>
         </div>
