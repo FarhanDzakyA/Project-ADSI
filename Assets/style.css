@@ -1,0 +1,49 @@
+.login-branding {
+    padding-top: 5%;
+    padding-left: 2.5%;
+    height: 95vh;
+}
+
+.form-session {
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-right: 13vh;
+}
+
+.login-welcome {
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 40px;
+    line-height: 48px;
+
+    color: #0077B6;
+}
+
+.login-text {
+    font-family: "Urbanist", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 140%;
+
+    color: #4F4F4F;
+}
+
+.login-form {
+    padding: 0 19%
+}
+
+.login-btn {
+    height: 60px;
+    width: 100%;
+
+    background-color: #0077B6;
+
+    font-family: "Urbanist", sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+
+    color: #FFFFFF;
+}
