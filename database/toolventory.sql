@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 18, 2024 at 03:44 PM
+-- Generation Time: May 20, 2024 at 03:11 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -62,30 +62,39 @@ INSERT INTO `barang` (`id_barang`, `nama_barang`, `id_jenisbarang`, `id_lokasi`,
 CREATE TABLE `barang_keluar` (
   `id_keluar` int(11) NOT NULL,
   `id_barang` varchar(10) DEFAULT NULL,
-  `jumlah_barang` int(11) DEFAULT NULL
+  `jumlah_barang` int(11) DEFAULT NULL,
+  `tanggal` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `barang_keluar`
 --
 
-INSERT INTO `barang_keluar` (`id_keluar`, `id_barang`, `jumlah_barang`) VALUES
-(1, 'BRG001', 54),
-(2, 'BRG002', 21),
-(3, 'BRG003', 27),
-(4, 'BRG004', 35),
-(5, 'BRG005', 66),
-(6, 'BRG006', 50),
-(7, 'BRG007', 36),
-(8, 'BRG008', 31),
-(9, 'BRG009', 32),
-(10, 'BRG010', 16),
-(11, 'BRG011', 47),
-(12, 'BRG012', 59);
+INSERT INTO `barang_keluar` (`id_keluar`, `id_barang`, `jumlah_barang`, `tanggal`) VALUES
+(1, 'BRG001', 54, '2024-05-20'),
+(2, 'BRG002', 21, '2024-05-20'),
+(3, 'BRG003', 27, '2024-05-20'),
+(4, 'BRG004', 35, '2024-05-20'),
+(5, 'BRG005', 66, '2024-05-20'),
+(6, 'BRG006', 50, '2024-05-20'),
+(7, 'BRG007', 36, '2024-05-20'),
+(8, 'BRG008', 31, '2024-05-20'),
+(9, 'BRG009', 32, '2024-05-20'),
+(10, 'BRG010', 16, '2024-05-20'),
+(11, 'BRG011', 47, '2024-05-20'),
+(12, 'BRG012', 59, '2024-05-20');
 
 --
 -- Triggers `barang_keluar`
 --
+DELIMITER $$
+CREATE TRIGGER `after_delete_barang_keluar` AFTER DELETE ON `barang_keluar` FOR EACH ROW BEGIN
+    UPDATE barang
+    SET stok = stok + OLD.jumlah_barang
+    WHERE id_barang = OLD.id_barang;
+END
+$$
+DELIMITER ;
 DELIMITER $$
 CREATE TRIGGER `update_stock_after_insert_out` AFTER INSERT ON `barang_keluar` FOR EACH ROW BEGIN
     UPDATE barang
@@ -104,30 +113,39 @@ DELIMITER ;
 CREATE TABLE `barang_masuk` (
   `id_masuk` int(11) NOT NULL,
   `id_barang` varchar(10) DEFAULT NULL,
-  `jumlah_barang` int(11) DEFAULT NULL
+  `jumlah_barang` int(11) DEFAULT NULL,
+  `tanggal` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `barang_masuk`
 --
 
-INSERT INTO `barang_masuk` (`id_masuk`, `id_barang`, `jumlah_barang`) VALUES
-(1, 'BRG001', 86),
-(2, 'BRG002', 36),
-(3, 'BRG003', 42),
-(4, 'BRG004', 78),
-(5, 'BRG005', 90),
-(6, 'BRG006', 80),
-(7, 'BRG007', 51),
-(8, 'BRG008', 75),
-(9, 'BRG009', 87),
-(10, 'BRG010', 34),
-(11, 'BRG011', 89),
-(12, 'BRG012', 86);
+INSERT INTO `barang_masuk` (`id_masuk`, `id_barang`, `jumlah_barang`, `tanggal`) VALUES
+(1, 'BRG001', 86, '2024-05-19'),
+(2, 'BRG002', 36, '2024-05-19'),
+(3, 'BRG003', 42, '2024-05-19'),
+(4, 'BRG004', 78, '2024-05-19'),
+(5, 'BRG005', 90, '2024-05-19'),
+(6, 'BRG006', 80, '2024-05-19'),
+(7, 'BRG007', 51, '2024-05-19'),
+(8, 'BRG008', 75, '2024-05-19'),
+(9, 'BRG009', 87, '2024-05-19'),
+(10, 'BRG010', 34, '2024-05-19'),
+(11, 'BRG011', 89, '2024-05-19'),
+(12, 'BRG012', 86, '2024-05-19');
 
 --
 -- Triggers `barang_masuk`
 --
+DELIMITER $$
+CREATE TRIGGER `after_delete_barang_masuk` AFTER DELETE ON `barang_masuk` FOR EACH ROW BEGIN
+    UPDATE barang
+    SET stok = stok - OLD.jumlah_barang
+    WHERE id_barang = OLD.id_barang;
+END
+$$
+DELIMITER ;
 DELIMITER $$
 CREATE TRIGGER `update_stock_after_insert_in` AFTER INSERT ON `barang_masuk` FOR EACH ROW BEGIN
 	UPDATE barang
