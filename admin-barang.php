@@ -16,7 +16,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Toolventory - Barang</title>
+    <title>Barang</title>
 
     <!-- Custom fonts for this template -->
     <link href="Assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
@@ -27,6 +27,9 @@
 
     <!-- Custom styles for this page -->
     <link href="Assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+    <!-- sweetalert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body id="page-top">
@@ -208,15 +211,66 @@
                             <td><?= $result['nama_lokasi'] ?></td>
                             <td><?= $result['stok'] ?></td>
                             <td>
-                              <a href="" class="btn btn-primary btn-circle btn-sm">
+                              <a href="admin-editbarang.php?update=<?= $result['id_barang']; ?>" class="btn btn-primary btn-circle btn-sm" data-toggle="tooltip" data-placement="top" title="Edit">
                                 <i class="fas fa-fw fa-pen"></i>
                               </a>
                               <span class="mr-1"></span>
-                              <a href="" class="btn btn-danger btn-circle btn-sm">
+                              <a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#hapusBarang<?= $result['id_barang'] ?>" data-toggle="tooltip" data-placement="top" title="Hapus">
                                 <i class="fas fa-fw fa-trash"></i>
                               </a>
                             </td>
                         </tr>
+
+                        <!-- Hapus Barang Modal-->
+                        <div
+                          class="modal fade"
+                          id="hapusBarang<?= $result['id_barang'] ?>"
+                          tabindex="-1"
+                          role="dialog"
+                          aria-labelledby="exampleModalLabel"
+                          aria-hidden="true"
+                        >
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Hapus Barang ?</h5>
+                                <button
+                                  class="close"
+                                  type="button"
+                                  data-dismiss="modal"
+                                  aria-label="Close"
+                                >
+                                  <span aria-hidden="true">×</span>
+                                </button>
+                              </div>
+                              <form action="" method="POST">
+                                <input type="hidden" name="id_barang" value="<?= $result['id_barang'] ?>">
+
+                                <div class="modal-body">
+                                  Apakah anda yakin ingin menghapus barang <?= $result['nama_barang'] ?> ?
+                                </div>
+                                
+                                <div class="modal-footer">
+                                  <button
+                                    class="btn btn-secondary"
+                                    type="button"
+                                    data-dismiss="modal"
+                                  >
+                                    Cancel
+                                  </button>
+                                  <button 
+                                    type="submit" 
+                                    name="btn-hapus" 
+                                    class="btn btn-danger"
+                                  >
+                                    Ya, Hapus Barang
+                                  </button>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+
                         <?php } ?>
                     </tbody>
                   </table>
@@ -304,3 +358,43 @@
     <script src="Assets/js/demo/datatables-demo.js"></script>
 </body>
 </html>
+
+<?php 
+  if(isset($_POST['btn-hapus'])) {
+    $id_barang = $_POST['id_barang'];
+
+    $query_delete = mysqli_query($mysqli, "DELETE FROM `barang` WHERE `id_barang` = '$id_barang'");
+
+    if($query_delete) {
+      ?>
+
+      <script>
+        Swal.fire({
+          title: "Berhasil!",
+          text: "Data Barang Berhasil Dihapus!",
+          icon: "success"
+        }).then(function() {
+          window.location.href = 'admin-barang.php';
+        });
+      </script>
+
+      <?php
+
+    } else {
+      ?>
+
+      <script>
+        Swal.fire({
+          title: "Gagal!",
+          text: "Data Barang Gagal Dihapus!",
+          icon: "error"
+        }).then(function() {
+          window.location.href = 'admin-barang.php';
+        });
+      </script>
+
+      <?php
+                                  
+    }
+  }
+?>

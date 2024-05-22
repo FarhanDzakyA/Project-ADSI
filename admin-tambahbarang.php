@@ -23,7 +23,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Toolventory - Barang</title>
+    <title>Tambah Barang</title>
 
     <!-- Custom fonts for this template -->
     <link href="Assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
@@ -206,9 +206,9 @@
                     <div class="form-group">
                         <label for="jenis_barang">Jenis Barang <i class="fas fa-star-of-life" style="font-size: 7px; vertical-align: top; color: #ED2939"></i></label>
                         <select name="jenis_barang" id="jenis_barang" class="form-control shadow-sm" required>
-                          <option value="" disabled selected>Pilih Jenis Barang</option>
+                          <option value="" disabled selected>-- Pilih Jenis Barang --</option>
                           <?php while($jenis = mysqli_fetch_assoc($query_get_jenis)) { ?>
-                          <option value="<?php $id_jenis = (int)$jenis['id_jenisbarang']; echo $id_jenis; ?>"><?php echo $jenis['jenis']; ?></option>
+                          <option value="<?= $jenis['id_jenisbarang']; ?>"><?php echo $jenis['jenis']; ?></option>
                           <?php } ?>
                         </select>
                     </div>
@@ -216,9 +216,9 @@
                     <div class="form-group">
                         <label for="lokasi">Lokasi Barang <i class="fas fa-star-of-life" style="font-size: 7px; vertical-align: top; color: #ED2939"></i></label>
                         <select name="lokasi" id="lokasi" class="form-control shadow-sm" required>
-                        <option value="" disabled selected>Pilih Lokasi Penyimpanan</option>
+                        <option value="" disabled selected>-- Pilih Lokasi Penyimpanan --</option>
                           <?php while($lokasi = mysqli_fetch_assoc($query_get_lokasi)) { ?>
-                          <option value="<?php $id_lokasi = (int)$lokasi['id_lokasi']; echo $id_lokasi; ?>"><?php echo $lokasi['nama_lokasi']; ?></option>
+                          <option value="<?= $lokasi['id_lokasi']; ?>"><?php echo $lokasi['nama_lokasi']; ?></option>
                           <?php } ?>
                         </select>
                     </div>
@@ -232,9 +232,9 @@
                       $id_barang = $_POST['id_barang'];
                       $nama_barang = $_POST['nama_barang'];
                       $jenis_barang = $_POST['jenis_barang'];
-                      $lokasi = $_POST['lokasi'];
+                      $lokasi_barang = $_POST['lokasi'];
 
-                      $query_insert = mysqli_query($mysqli, "INSERT INTO `barang`(`id_barang`, `nama_barang`, `id_jenisbarang`, `id_lokasi`, `stok`) VALUES ('$id_barang','$nama_barang','$jenis_barang','$lokasi', '0')");
+                      $query_insert = mysqli_query($mysqli, "INSERT INTO `barang`(`id_barang`, `nama_barang`, `id_jenisbarang`, `id_lokasi`, `stok`) VALUES ('$id_barang','$nama_barang','$jenis_barang','$lokasi_barang', '0')");
 
                       if($query_insert) {
                         ?>
@@ -245,8 +245,8 @@
                             text: "Data Barang Berhasil Ditambahkan!",
                             icon: "success"
                           }).then(function() {
-                             window.location.href = 'admin-barang.php'; // Redirect after the user clicks "OK"
-                           });
+                             window.location.href = 'admin-barang.php';
+                          });
                         </script>
 
                         <?php
@@ -260,8 +260,8 @@
                             text: "Data Barang Gagal Ditambahkan!",
                             icon: "error"
                           }).then(function() {
-                             window.location.href = 'admin-barang.php'; // Redirect after the user clicks "OK"
-                           });
+                             window.location.href = 'admin-barang.php';
+                          });
                         </script>
 
                         <?php
