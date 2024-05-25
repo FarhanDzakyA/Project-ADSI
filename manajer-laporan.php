@@ -23,6 +23,9 @@
                                             jenis_barang ON barang.id_jenisbarang = jenis_barang.id_jenisbarang 
                                         LEFT JOIN 
                                             lokasi_penyimpanan ON barang.id_lokasi = lokasi_penyimpanan.id_lokasi;");
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -177,8 +180,8 @@
                     <h5 class="m-0 font-weight-bold text-primary">
                       Laporan Inventaris
                     </h5>
-                    <a href="admin-tambahbarang.php" class="d-none d-sm-inline-block btn btn-sm btn-primary rounded-pill shadow-sm">
-                        <i class="fas fa-print fa-sm text-white-100 mr-2"></i>
+                    <a href="export.php" target="_blank" class="d-none d-sm-inline-block btn btn-sm btn-primary rounded-pill shadow-sm">
+                        <i class="fas fa-print fa-sm text-white-100 mr-3"></i>&nbsp;
                         Print
                     </a>
                 </div>
