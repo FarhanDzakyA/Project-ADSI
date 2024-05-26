@@ -48,7 +48,7 @@
 
     <!-- icon -->
     <link rel="icon" href="Assets/img/logo.png">
-    
+
     <!-- Custom styles for this page -->
     <link href="Assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
 
@@ -185,7 +185,7 @@
                     </h5>
                     <a href="export.php" target="_blank" class="d-none d-sm-inline-block btn btn-sm btn-primary rounded-pill shadow-sm">
                         <i class="fas fa-print fa-sm text-white-100 ms-1"></i>&nbsp;
-                        Print
+                        Print Data 
                     </a>
                 </div>
               </div>

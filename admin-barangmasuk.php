@@ -144,7 +144,7 @@
                   >
                   <img
                     class="img-profile rounded-circle"
-                    src="Assets/img/undraw_profile.svg"
+                    src="Assets/img/undraw_profile_3.svg"
                   />
                 </a>
                 <!-- Dropdown - User Information -->
@@ -180,7 +180,7 @@
                     </h5>
                     <a href="admin-tambahbarangmasuk.php" class="d-none d-sm-inline-block btn btn-sm btn-primary rounded-pill shadow-sm">
                         <i class="fas fa-plus fa-sm text-white-100 mr-2"></i>
-                        Entri Data
+                        Entri Data Masuk
                     </a>
                 </div>
               </div>

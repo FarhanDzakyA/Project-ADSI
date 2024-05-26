@@ -146,7 +146,7 @@
                   >
                   <img
                     class="img-profile rounded-circle"
-                    src="Assets/img/undraw_profile.svg"
+                    src="Assets/img/undraw_profile_3.svg"
                   />
                 </a>
                 <!-- Dropdown - User Information -->
