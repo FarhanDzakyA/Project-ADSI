@@ -16,7 +16,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Toolventory - Barang</title>
+    <title>Toolventory - Barang Keluar</title>
 
     <!-- Custom fonts for this template -->
     <link href="Assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
@@ -27,6 +27,9 @@
 
     <!-- Custom styles for this page -->
     <link href="Assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+    <!-- icon -->
+    <link rel="icon" href="Assets/img/logo.png">
 </head>
 
 <body id="page-top">

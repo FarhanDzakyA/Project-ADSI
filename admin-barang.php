@@ -16,7 +16,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Barang</title>
+    <title>Toolventory - Barang</title>
 
     <!-- Custom fonts for this template -->
     <link href="Assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
@@ -28,6 +28,8 @@
     <!-- Custom styles for this page -->
     <link href="Assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
 
+    <!-- icon -->
+    <link rel="icon" href="Assets/img/logo.png">
     <!-- sweetalert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>

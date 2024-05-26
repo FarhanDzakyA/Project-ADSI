@@ -37,7 +37,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Laporan</title>
+    <title>Toolventory - Laporan</title>
 
     <!-- Custom fonts for this template -->
     <link href="Assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
@@ -46,6 +46,9 @@
     <!-- Custom styles for this template -->
     <link href="Assets/css/sb-admin-2.min.css" rel="stylesheet" />
 
+    <!-- icon -->
+    <link rel="icon" href="Assets/img/logo.png">
+    
     <!-- Custom styles for this page -->
     <link href="Assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
 
