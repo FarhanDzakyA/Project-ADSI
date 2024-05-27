@@ -209,11 +209,61 @@
                             <td><?= $result['jumlah_barang'] ?></td>
                             <td><?= $result['tanggal'] ?></td>
                             <td>
-                              <a href="" class="btn btn-danger btn-circle btn-sm">
+                            <a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#hapusBarangKeluar<?= $result['id_keluar'] ?>" data-toggle="tooltip" data-placement="top" title="Hapus">
                                 <i class="fas fa-fw fa-trash"></i>
                               </a>
                             </td>
                         </tr>
+
+                        <!-- Hapus Barang Modal-->
+                        <div
+                          class="modal fade"
+                          id="hapusBarangKeluar<?= $result['id_keluar'] ?>"
+                          tabindex="-1"
+                          role="dialog"
+                          aria-labelledby="exampleModalLabel"
+                          aria-hidden="true"
+                        >
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Hapus Barang Keluar?</h5>
+                                <button
+                                  class="close"
+                                  type="button"
+                                  data-dismiss="modal"
+                                  aria-label="Close"
+                                >
+                                  <span aria-hidden="true">×</span>
+                                </button>
+                              </div>
+                              <form action="" method="POST">
+                                <input type="hidden" name="id_keluar" value="<?= $result['id_keluar'] ?>">
+
+                                <div class="modal-body">
+                                  Apakah anda yakin ingin menghapus barang <?= $result['id_barang'] ?> yang keluar pada tanggal <?= $result['tanggal'] ?>?
+                                </div>
+                                
+                                <div class="modal-footer">
+                                  <button
+                                    class="btn btn-secondary"
+                                    type="button"
+                                    data-dismiss="modal"
+                                  >
+                                    Cancel
+                                  </button>
+                                  <button 
+                                    type="submit" 
+                                    name="btn-hapus" 
+                                    class="btn btn-danger"
+                                  >
+                                    Ya, Hapus Barang
+                                  </button>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
                         <?php } ?>
                     </tbody>
                   </table>
