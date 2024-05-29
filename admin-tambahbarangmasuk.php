@@ -212,7 +212,7 @@
                         <script>
                           Swal.fire({
                             title: "Berhasil!",
-                            text: "Data Barang Berhasil Ditambahkan!",
+                            text: "Data Barang Masuk Berhasil Ditambahkan!",
                             icon: "success"
                           }).then(function() {
                              window.location.href = 'admin-barangmasuk.php'; // Redirect after the user clicks "OK"
@@ -227,7 +227,7 @@
                         <script>
                           Swal.fire({
                             title: "Gagal!",
-                            text: "Data Barang Gagal Ditambahkan!",
+                            text: "Data Barang Masuk Gagal Ditambahkan!",
                             icon: "error"
                           }).then(function() {
                              window.location.href = 'admin-barangmasuk.php'; // Redirect after the user clicks "OK"
