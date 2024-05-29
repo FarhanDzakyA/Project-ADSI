@@ -11,4 +11,4 @@ Analisis dan Desain Sistem Informasi - Kelompok 1
 
 ## Demo
 
-![demo](https://github.com/FarhanDzakyA/Project-ADSI/assets/112398221/3cd70c02-8979-4dcf-a6f6-80e328471a6b)
+![demo](https://github.com/FarhanDzakyA/Project-ADSI/assets/112398221/ab4e2b0d-107a-4400-99b8-b1f4bc2516a2)
