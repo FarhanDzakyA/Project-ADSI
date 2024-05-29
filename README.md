@@ -9,3 +9,6 @@ Analisis dan Desain Sistem Informasi - Kelompok 1
 - M. Abdul Adhim - 2217051030
 - Ivan Aditya - 2217051147
 
+## Demo
+
+![demo](https://github.com/FarhanDzakyA/Project-ADSI/assets/112398221/3cd70c02-8979-4dcf-a6f6-80e328471a6b)
