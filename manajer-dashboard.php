@@ -95,6 +95,8 @@
             <i class="fas fa-fw fa-home"></i>
             <span>Dashboard</span></a>
         </li>
+    
+        <hr class="sidebar-divider d-none d-md-block" />
 
         <!-- Nav Item - Barang -->
         <li class="nav-item">
@@ -103,21 +105,8 @@
             <span>Laporan</span></a>
         </li>
 
-        <hr class="sidebar-divider" />
-
-        <!-- Nav Section Heading -->
-        <div class="sidebar-heading">lainnya</div>
-
-        <!-- Nav Item - About Us -->
-        <li class="nav-item">
-          <a class="nav-link" href="">
-            <i class="fas fa-fw fa-info-circle"></i>
-            <span>Tentang Kami</span></a
-          >
-        </li>
-
         <hr class="sidebar-divider d-none d-md-block" />
-
+        
         <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">
           <button class="rounded-circle border-0" id="sidebarToggle"></button>
