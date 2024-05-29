@@ -82,25 +82,13 @@
             <i class="fas fa-fw fa-home"></i>
             <span>Dashboard</span></a>
         </li>
+        
 
         <!-- Nav Item - Barang -->
         <li class="nav-item active">
           <a class="nav-link" href="manajer-laporan.php">
             <i class="fas fa-fw fa-file-alt"></i>
             <span>Laporan</span></a>
-        </li>
-
-        <hr class="sidebar-divider" />
-
-        <!-- Nav Section Heading -->
-        <div class="sidebar-heading">lainnya</div>
-
-        <!-- Nav Item - About Us -->
-        <li class="nav-item">
-          <a class="nav-link" href="">
-            <i class="fas fa-fw fa-info-circle"></i>
-            <span>Tentang Kami</span></a
-          >
         </li>
 
         <hr class="sidebar-divider d-none d-md-block" />

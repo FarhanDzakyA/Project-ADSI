@@ -1,5 +1,78 @@
-<?php 
-    include "Exe-file/koneksi.php";
+<?php
+    require 'Assets/vendor/autoload.php';
+    include 'Exe-File/koneksi.php';
+
+    use PhpOffice\PhpSpreadsheet\Spreadsheet;
+    use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+    use PhpOffice\PhpSpreadsheet\Style\Fill;
+    use PhpOffice\PhpSpreadsheet\Style\Color;
+    use PhpOffice\PhpSpreadsheet\Style\Alignment;
+    use PhpOffice\PhpSpreadsheet\Style\Border;
+
+    $spreadsheet = new Spreadsheet();
+    $sheet = $spreadsheet->getActiveSheet();
+
+    // Merge kolom A1 hingga G1
+    $sheet->mergeCells('A1:G1');
+    $sheet->setCellValue('A1', 'Laporan Inventaris Barang PT ADSI');
+    $sheet->getStyle('A1')->applyFromArray([
+        'font' => [
+            'bold' => true,
+            'size' => 20,
+            'name' => 'Calibri Light',
+            'color' => ['rgb' => 'FFFFFF']
+        ],
+        'fill' => [
+            'fillType' => Fill::FILL_SOLID,
+            'startColor' => [
+                'rgb' => '486edb'
+            ]
+        ],
+        'alignment' => [
+            'horizontal' => Alignment::HORIZONTAL_CENTER,
+            'vertical' => Alignment::VERTICAL_CENTER
+        ]
+    ]);
+
+    $sheet->getColumnDimension('A')->setWidth(10);
+    $sheet->getColumnDimension('B')->setWidth(35);
+    $sheet->getColumnDimension('C')->setWidth(15);
+    $sheet->getColumnDimension('D')->setWidth(12);
+    $sheet->getColumnDimension('E')->setWidth(12);
+    $sheet->getColumnDimension('F')->setWidth(12);
+    $sheet->getColumnDimension('G')->setWidth(18);
+
+    $sheet->setCellValue('A3', 'ID Barang');
+    $sheet->setCellValue('B3', 'Nama Barang');
+    $sheet->setCellValue('C3', 'Jenis Barang');
+    $sheet->setCellValue('D3', 'Stock In');
+    $sheet->setCellValue('E3', 'Stock Out');
+    $sheet->setCellValue('F3', 'Stock Akhir');
+    $sheet->setCellValue('G3', 'Lokasi Barang');
+
+    $sheet->getStyle('A3:G3')->applyFromArray([
+        'font' => [
+            'bold' => true,
+            'size' => 12,
+            'name' => 'Calibri'
+        ],
+        'fill' => [
+            'fillType' => Fill::FILL_SOLID,
+            'startColor' => [
+                'rgb' => 'bdd7ee'
+            ]
+        ],
+        'alignment' => [
+            'horizontal' => Alignment::HORIZONTAL_CENTER,
+            'vertical' => Alignment::VERTICAL_CENTER
+        ],
+        'borders' => [
+            'allBorders' => [
+                'borderStyle' => Border::BORDER_THIN,
+                'color' => ['rgb' => '000000']
+            ]
+        ]
+    ]);
 
     $query_table = mysqli_query($mysqli, "SELECT 
                                             barang.id_barang, 
@@ -24,36 +97,53 @@
                                         LEFT JOIN 
                                             lokasi_penyimpanan ON barang.id_lokasi = lokasi_penyimpanan.id_lokasi;");
 
-$filename = "laporan inventaris barang" . date('Ymd') . ".xls";
+    if (!$query_table) {
+        die('Query Error: ' . mysqli_error($mysqli));
+    }
 
-header("Content-type: application/vnd-ms-excel");
-header("Content-Disposition: attachment; filename=Laporan Barang.xls");
-?>
+    $styleArray = [
+        'font' => [
+            'size' => 12,
+            'name' => 'Calibri'
+        ],
+        'alignment' => [
+            'horizontal' => Alignment::HORIZONTAL_LEFT,
+            'vertical' => Alignment::VERTICAL_TOP
+        ],
+        'borders' => [
+            'allBorders' => [
+                'borderStyle' => Border::BORDER_THIN,
+                'color' => ['rgb' => '000000']
+            ]
+        ]
+    ];
 
+    $row = 4;
+    while ($result = mysqli_fetch_assoc($query_table)) {
+        $sheet->setCellValue('A' . $row, $result['id_barang']);
+        $sheet->setCellValue('B' . $row, $result['nama_barang']);
+        $sheet->setCellValue('C' . $row, $result['jenis']);
+        $sheet->setCellValue('D' . $row, $result['total_barang_masuk']);
+        $sheet->setCellValue('E' . $row, $result['total_barang_keluar']);
+        $sheet->setCellValue('F' . $row, $result['stok']);
+        $sheet->setCellValue('G' . $row, $result['nama_lokasi']);
 
-<table class="table table-borderless" id="dataTable" width="100%" cellspacing="0">
-    <thead class="thead-light">
-        <tr>
-            <th>ID Barang</th>
-            <th>Nama Barang</th>
-            <th>Jenis Barang</th>
-            <th>Stock In</th>
-            <th>Stock Out</th>
-            <th>Stock Akhir</th>
-            <th>Lokasi Barang</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php while($result = mysqli_fetch_assoc($query_table)) { ?>
-        <tr>
-            <td><?= $result['id_barang'] ?></td>
-            <td><?= $result['nama_barang'] ?></td>
-            <td><?= $result['jenis'] ?></td>
-            <td><?= $result['total_barang_masuk'] ?></td>
-            <td><?= $result['total_barang_keluar'] ?></td>
-            <td><?= $result['stok'] ?></td>
-            <td><?= $result['nama_lokasi'] ?></td>
-        </tr>
-        <?php } ?>
-    </tbody>
-</table>
+        $sheet->getStyle('A' . $row . ':G' . $row)->applyFromArray($styleArray);
+
+        $row++;
+    }
+
+    setlocale(LC_TIME, 'id_ID.UTF-8');
+    $bulan = strftime('%B', strtotime(date('Y-m-01')));
+    $tahun = date('Y');
+
+    $filename = "Laporan Inventaris Barang PT ADSI - $bulan $tahun.xlsx";
+
+    ob_end_clean();
+    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    header('Content-Disposition: attachment;filename="' . $filename . '"');
+    header('Cache-Control: max-age=0');
+
+    $writer = new Xlsx($spreadsheet);
+    $writer->save('php://output');
+    exit;

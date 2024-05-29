@@ -30,6 +30,9 @@
 
     <!-- Custom styles for this page -->
     <link href="Assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+    <!-- sweetalert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body id="page-top">
@@ -83,19 +86,6 @@
           <a class="nav-link" href="admin-barangkeluar.php">
             <i class="fas fa-fw fa-boxes"></i>
             <span>Barang Keluar</span></a>
-        </li>
-
-        <hr class="sidebar-divider" />
-
-        <!-- Nav Section Heading -->
-        <div class="sidebar-heading">lainnya</div>
-
-        <!-- Nav Item - About Us -->
-        <li class="nav-item">
-          <a class="nav-link" href="">
-            <i class="fas fa-fw fa-info-circle"></i>
-            <span>Tentang Kami</span></a
-          >
         </li>
 
         <hr class="sidebar-divider d-none d-md-block" />
@@ -351,3 +341,43 @@
     <script src="Assets/js/demo/datatables-demo.js"></script>
 </body>
 </html>
+
+<?php 
+  if(isset($_POST['btn-hapus'])) {
+    $id_masuk = $_POST['id_masuk'];
+
+    $query_delete = mysqli_query($mysqli, "DELETE FROM `barang_masuk` WHERE `id_masuk` = '$id_masuk'");
+
+    if($query_delete) {
+      ?>
+
+      <script>
+        Swal.fire({
+          title: "Berhasil!",
+          text: "Data Barang Masuk Berhasil Dihapus!",
+          icon: "success"
+        }).then(function() {
+          window.location.href = 'admin-barangmasuk.php';
+        });
+      </script>
+
+      <?php
+
+    } else {
+      ?>
+
+      <script>
+        Swal.fire({
+          title: "Gagal!",
+          text: "Data Barang Masuk Gagal Dihapus!",
+          icon: "error"
+        }).then(function() {
+          window.location.href = 'admin-barangmasuk.php';
+        });
+      </script>
+
+      <?php
+                                  
+    }
+  }
+?>

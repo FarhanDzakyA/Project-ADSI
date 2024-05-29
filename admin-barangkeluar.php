@@ -30,6 +30,9 @@
 
     <!-- icon -->
     <link rel="icon" href="Assets/img/logo.png">
+
+    <!-- sweetalert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body id="page-top">
@@ -83,19 +86,6 @@
           <a class="nav-link" href="admin-barangkeluar.php">
             <i class="fas fa-fw fa-boxes"></i>
             <span>Barang Keluar</span></a>
-        </li>
-
-        <hr class="sidebar-divider" />
-
-        <!-- Nav Section Heading -->
-        <div class="sidebar-heading">lainnya</div>
-
-        <!-- Nav Item - About Us -->
-        <li class="nav-item">
-          <a class="nav-link" href="">
-            <i class="fas fa-fw fa-info-circle"></i>
-            <span>Tentang Kami</span></a
-          >
         </li>
 
         <hr class="sidebar-divider d-none d-md-block" />
@@ -351,3 +341,43 @@
     <script src="Assets/js/demo/datatables-demo.js"></script>
 </body>
 </html>
+
+<?php 
+  if(isset($_POST['btn-hapus'])) {
+    $id_keluar = $_POST['id_keluar'];
+
+    $query_delete = mysqli_query($mysqli, "DELETE FROM `barang_keluar` WHERE `id_keluar` = '$id_keluar'");
+
+    if($query_delete) {
+      ?>
+
+      <script>
+        Swal.fire({
+          title: "Berhasil!",
+          text: "Data Barang Keluar Berhasil Dihapus!",
+          icon: "success"
+        }).then(function() {
+          window.location.href = 'admin-barangkeluar.php';
+        });
+      </script>
+
+      <?php
+
+    } else {
+      ?>
+
+      <script>
+        Swal.fire({
+          title: "Gagal!",
+          text: "Data Barang Keluar Gagal Dihapus!",
+          icon: "error"
+        }).then(function() {
+          window.location.href = 'admin-barangkeluar.php';
+        });
+      </script>
+
+      <?php
+                                  
+    }
+  }
+?>
