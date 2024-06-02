@@ -10,10 +10,13 @@
     use PhpOffice\PhpSpreadsheet\Style\Border;
 
     $spreadsheet = new Spreadsheet();
+    $spreadsheet->getActiveSheet()->getPageSetup()->setOrientation(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_LANDSCAPE);
+    $spreadsheet->getActiveSheet()->getPageSetup()->setPaperSize(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::PAPERSIZE_A4);
+    $spreadsheet->getActiveSheet()->getPageSetup()->setHorizontalCentered(true);
     $sheet = $spreadsheet->getActiveSheet();
 
     // Merge kolom A1 hingga G1
-    $sheet->mergeCells('A1:G1');
+    $sheet->mergeCells('A1:G2');
     $sheet->setCellValue('A1', 'Laporan Inventaris Barang PT ADSI');
     $sheet->getStyle('A1')->applyFromArray([
         'font' => [
@@ -31,6 +34,12 @@
         'alignment' => [
             'horizontal' => Alignment::HORIZONTAL_CENTER,
             'vertical' => Alignment::VERTICAL_CENTER
+        ],
+        'borders' => [
+            'allBorders' => [
+                'borderStyle' => Border::BORDER_THIN,
+                'color' => ['rgb' => '486edb']
+            ]
         ]
     ]);
 
@@ -40,7 +49,7 @@
     $sheet->getColumnDimension('D')->setWidth(12);
     $sheet->getColumnDimension('E')->setWidth(12);
     $sheet->getColumnDimension('F')->setWidth(12);
-    $sheet->getColumnDimension('G')->setWidth(18);
+    $sheet->getColumnDimension('G')->setWidth(20);
 
     $sheet->setCellValue('A3', 'ID Barang');
     $sheet->setCellValue('B3', 'Nama Barang');

@@ -10,9 +10,13 @@
 
     if ($cek_user > 0) {
         if (stripos($username, "admin") !== false) {
+            $_SESSION['admin'] = true;
+
             header('Location: ../admin-dashboard.php');
             exit();
         } else if (stripos($username, "manajer") !== false) {
+            $_SESSION['manajer'] = true;
+
             header('Location: ../manajer-dashboard.php');
             exit();
         }

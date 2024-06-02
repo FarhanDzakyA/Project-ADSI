@@ -1,3 +1,7 @@
+<?php
+  include "Exe-file/manajer-session-check.php";
+?>
+
 <?php 
     include "Exe-file/koneksi.php";
 
@@ -272,7 +276,7 @@
             >
               Cancel
             </button>
-            <a class="btn btn-primary" href="login-page.php">Logout</a>
+            <a class="btn btn-primary" href="Exe-File/logout-exe.php">Logout</a>
           </div>
         </div>
       </div>
