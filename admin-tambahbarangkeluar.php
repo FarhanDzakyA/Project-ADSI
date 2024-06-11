@@ -5,7 +5,16 @@
 <?php 
     include "Exe-File/koneksi.php";
 
+    $query_old_id = mysqli_query($mysqli, "SELECT id_keluar FROM barang_keluar ORDER BY id_keluar DESC LIMIT 1");
     $query_get_barang = mysqli_query($mysqli, "SELECT * FROM `barang`");
+
+    $temp = mysqli_fetch_assoc($query_old_id);
+    $oldID = $temp['id_keluar'];
+
+    $numericPart = (int)substr($oldID, 4);
+    $numericPart++;
+
+    $newID = "OUT-" . str_pad($numericPart, 4, "0", STR_PAD_LEFT);
 ?>
 
 <!DOCTYPE html>
@@ -204,11 +213,12 @@
 
                   <?php
                     if(isset($_POST['btn-simpan'])) {
+                      $id_keluar = $newID;
                       $barang = $_POST['nama_barang'];
                       $jumlah_barang = $_POST['jumlah_barang'];
                       $tanggal = $_POST['tanggal_keluar'];
 
-                      $query_insert = mysqli_query($mysqli, "INSERT INTO `barang_keluar`(`id_barang`, `jumlah_barang`, `tanggal`) VALUES ('$barang','$jumlah_barang','$tanggal')");
+                      $query_insert = mysqli_query($mysqli, "INSERT INTO `barang_keluar`(`id_keluar`, `id_barang`, `jumlah_barang`, `tanggal`) VALUES ('$id_keluar', '$barang','$jumlah_barang','$tanggal')");
 
                       if($query_insert) {
                         ?>

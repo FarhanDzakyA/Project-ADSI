@@ -188,7 +188,7 @@
                   >
                     <thead class="thead-light">
                         <tr>
-                            <th>ID Masuk</th>
+                            <th>ID Keluar</th>
                             <th>ID Barang</th>
                             <th>Jumlah Keluar</th>
                             <th>Tanggal</th>
@@ -235,7 +235,7 @@
                                 <input type="hidden" name="id_keluar" value="<?= $result['id_keluar'] ?>">
 
                                 <div class="modal-body">
-                                  Apakah anda yakin ingin menghapus barang <?= $result['id_barang'] ?> yang keluar pada tanggal <?= $result['tanggal'] ?>?
+                                  Apakah anda yakin ingin menghapus barang <?= $result['id_barang'] ?> dengan ID transaksi <?= $result['id_keluar'] ?> pada tanggal <?= $result['tanggal'] ?>?
                                 </div>
                                 
                                 <div class="modal-footer">

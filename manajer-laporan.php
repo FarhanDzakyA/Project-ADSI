@@ -26,7 +26,9 @@
                                         LEFT JOIN 
                                             jenis_barang ON barang.id_jenisbarang = jenis_barang.id_jenisbarang 
                                         LEFT JOIN 
-                                            lokasi_penyimpanan ON barang.id_lokasi = lokasi_penyimpanan.id_lokasi;");
+                                            lokasi_penyimpanan ON barang.id_lokasi = lokasi_penyimpanan.id_lokasi
+                                        WHERE
+                                            masuk.total_masuk IS NOT NULL OR keluar.total_keluar IS NOT NULL;");
 
 
 
@@ -87,6 +89,7 @@
             <span>Dashboard</span></a>
         </li>
         
+        <hr class="sidebar-divider" />
 
         <!-- Nav Item - Barang -->
         <li class="nav-item active">

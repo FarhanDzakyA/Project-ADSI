@@ -235,7 +235,7 @@
                                 <input type="hidden" name="id_masuk" value="<?= $result['id_masuk'] ?>">
 
                                 <div class="modal-body">
-                                  Apakah anda yakin ingin menghapus barang <?= $result['id_barang'] ?> yang masuk pada tanggal <?= $result['tanggal'] ?>?
+                                  Apakah anda yakin ingin menghapus barang <?= $result['id_barang'] ?> dengan ID transaksi <?= $result['id_masuk'] ?> pada tanggal <?= $result['tanggal'] ?>?
                                 </div>
                                 
                                 <div class="modal-footer">
