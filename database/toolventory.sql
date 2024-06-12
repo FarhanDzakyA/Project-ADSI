@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 20, 2024 at 03:11 PM
+-- Generation Time: Jun 12, 2024 at 05:21 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -60,7 +60,7 @@ INSERT INTO `barang` (`id_barang`, `nama_barang`, `id_jenisbarang`, `id_lokasi`,
 --
 
 CREATE TABLE `barang_keluar` (
-  `id_keluar` int(11) NOT NULL,
+  `id_keluar` varchar(10) NOT NULL,
   `id_barang` varchar(10) DEFAULT NULL,
   `jumlah_barang` int(11) DEFAULT NULL,
   `tanggal` date DEFAULT NULL
@@ -71,18 +71,18 @@ CREATE TABLE `barang_keluar` (
 --
 
 INSERT INTO `barang_keluar` (`id_keluar`, `id_barang`, `jumlah_barang`, `tanggal`) VALUES
-(1, 'BRG001', 54, '2024-05-20'),
-(2, 'BRG002', 21, '2024-05-20'),
-(3, 'BRG003', 27, '2024-05-20'),
-(4, 'BRG004', 35, '2024-05-20'),
-(5, 'BRG005', 66, '2024-05-20'),
-(6, 'BRG006', 50, '2024-05-20'),
-(7, 'BRG007', 36, '2024-05-20'),
-(8, 'BRG008', 31, '2024-05-20'),
-(9, 'BRG009', 32, '2024-05-20'),
-(10, 'BRG010', 16, '2024-05-20'),
-(11, 'BRG011', 47, '2024-05-20'),
-(12, 'BRG012', 59, '2024-05-20');
+('OUT-0001', 'BRG001', 54, '2024-05-20'),
+('OUT-0002', 'BRG002', 21, '2024-05-20'),
+('OUT-0003', 'BRG003', 27, '2024-05-20'),
+('OUT-0004', 'BRG004', 35, '2024-05-20'),
+('OUT-0005', 'BRG005', 66, '2024-05-20'),
+('OUT-0006', 'BRG006', 50, '2024-05-20'),
+('OUT-0007', 'BRG007', 36, '2024-05-20'),
+('OUT-0008', 'BRG008', 31, '2024-05-20'),
+('OUT-0009', 'BRG009', 32, '2024-05-20'),
+('OUT-0010', 'BRG010', 16, '2024-05-20'),
+('OUT-0011', 'BRG011', 47, '2024-05-20'),
+('OUT-0012', 'BRG012', 59, '2024-05-20');
 
 --
 -- Triggers `barang_keluar`
@@ -111,7 +111,7 @@ DELIMITER ;
 --
 
 CREATE TABLE `barang_masuk` (
-  `id_masuk` int(11) NOT NULL,
+  `id_masuk` varchar(10) NOT NULL,
   `id_barang` varchar(10) DEFAULT NULL,
   `jumlah_barang` int(11) DEFAULT NULL,
   `tanggal` date DEFAULT NULL
@@ -122,18 +122,18 @@ CREATE TABLE `barang_masuk` (
 --
 
 INSERT INTO `barang_masuk` (`id_masuk`, `id_barang`, `jumlah_barang`, `tanggal`) VALUES
-(1, 'BRG001', 86, '2024-05-19'),
-(2, 'BRG002', 36, '2024-05-19'),
-(3, 'BRG003', 42, '2024-05-19'),
-(4, 'BRG004', 78, '2024-05-19'),
-(5, 'BRG005', 90, '2024-05-19'),
-(6, 'BRG006', 80, '2024-05-19'),
-(7, 'BRG007', 51, '2024-05-19'),
-(8, 'BRG008', 75, '2024-05-19'),
-(9, 'BRG009', 87, '2024-05-19'),
-(10, 'BRG010', 34, '2024-05-19'),
-(11, 'BRG011', 89, '2024-05-19'),
-(12, 'BRG012', 86, '2024-05-19');
+('IN-0001', 'BRG001', 86, '2024-05-19'),
+('IN-0002', 'BRG002', 36, '2024-05-19'),
+('IN-0003', 'BRG003', 42, '2024-05-19'),
+('IN-0004', 'BRG004', 78, '2024-05-19'),
+('IN-0005', 'BRG005', 90, '2024-05-19'),
+('IN-0006', 'BRG006', 80, '2024-05-19'),
+('IN-0007', 'BRG007', 51, '2024-05-19'),
+('IN-0008', 'BRG008', 75, '2024-05-19'),
+('IN-0009', 'BRG009', 87, '2024-05-19'),
+('IN-0010', 'BRG010', 34, '2024-05-19'),
+('IN-0011', 'BRG011', 89, '2024-05-19'),
+('IN-0012', 'BRG012', 86, '2024-05-19');
 
 --
 -- Triggers `barang_masuk`
@@ -235,14 +235,14 @@ ALTER TABLE `barang`
 --
 ALTER TABLE `barang_keluar`
   ADD PRIMARY KEY (`id_keluar`),
-  ADD KEY `id_barang` (`id_barang`);
+  ADD KEY `barang_keluar_ibfk_1` (`id_barang`);
 
 --
 -- Indexes for table `barang_masuk`
 --
 ALTER TABLE `barang_masuk`
   ADD PRIMARY KEY (`id_masuk`),
-  ADD KEY `id_barang` (`id_barang`);
+  ADD KEY `barang_masuk_ibfk_1` (`id_barang`);
 
 --
 -- Indexes for table `jenis_barang`
@@ -259,18 +259,6 @@ ALTER TABLE `lokasi_penyimpanan`
 --
 -- AUTO_INCREMENT for dumped tables
 --
-
---
--- AUTO_INCREMENT for table `barang_keluar`
---
-ALTER TABLE `barang_keluar`
-  MODIFY `id_keluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- AUTO_INCREMENT for table `barang_masuk`
---
-ALTER TABLE `barang_masuk`
-  MODIFY `id_masuk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `jenis_barang`
@@ -299,13 +287,13 @@ ALTER TABLE `barang`
 -- Constraints for table `barang_keluar`
 --
 ALTER TABLE `barang_keluar`
-  ADD CONSTRAINT `barang_keluar_ibfk_1` FOREIGN KEY (`id_barang`) REFERENCES `barang` (`id_barang`);
+  ADD CONSTRAINT `barang_keluar_ibfk_1` FOREIGN KEY (`id_barang`) REFERENCES `barang` (`id_barang`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Constraints for table `barang_masuk`
 --
 ALTER TABLE `barang_masuk`
-  ADD CONSTRAINT `barang_masuk_ibfk_1` FOREIGN KEY (`id_barang`) REFERENCES `barang` (`id_barang`);
+  ADD CONSTRAINT `barang_masuk_ibfk_1` FOREIGN KEY (`id_barang`) REFERENCES `barang` (`id_barang`) ON DELETE SET NULL ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
